@@ -5,7 +5,9 @@ def loshumagic(square):
     is_loshu = True
     for position in range(0, len(square)):
         row_sum = sum(square[0])
+        diagonals = []
         column_sum = 0
+        diagonal_sum = 0
         # columns
         for row in square:
             row_sum = sum(row)
@@ -21,7 +23,19 @@ def loshumagic(square):
             else:
                 continue
         # diagonals
-        # for
+        current_column = 0
+        for row in square:
+            current_column = (row[position])
+            diagonal_sum += current_column
+            diagonals.append(diagonal_sum)
+            current_column += 1
+        # print(diagonals)
+        if diagonal_sum == row_sum:
+            if sum(side) != row_sum:
+                is_loshu = False
+            else:
+                continue
+
     return is_loshu
 
 
@@ -32,7 +46,7 @@ def main():
     square_one = ([1, 7, 3, 4], [2, 6, 4, 3], [6, 1, 1, 7], [6, 4, 1, 4])
     square_two = ([1, 1, 1], [1, 1, 1], [1, 1, 1])
     square_three = ([1, 1, 1], [1, 2, 1], [1, 1, 1])
-    print(loshumagic(([16, 2, 3, 13], [5, 11, 10, 8], [9, 7, 6, 12], [4, 14, 15, 1])))
+    print(loshumagic(([16, 2, 3, 13], [5, 11, 8, 8], [9, 7, 6, 12], [4, 14, 15, 1])))
     print(loshumagic(([6, 1, 8], [7, 5, 3], [2, 9, 4])))
     print(loshumagic([[0, 0, 0], [0, 0, 0], [0, 0, 0]]))
     print(loshumagic([[1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]))
